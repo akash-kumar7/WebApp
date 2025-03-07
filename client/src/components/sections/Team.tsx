@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { useLocation } from "wouter";
 
 const team = [
   {
@@ -21,8 +22,14 @@ const team = [
 ];
 
 export default function Team() {
+  const [, setLocation] = useLocation();
+
   return (
-    <section id="team" className="section-padding relative">
+    <section 
+      id="team" 
+      className="section-padding relative cursor-pointer"
+      onClick={() => setLocation("/team")}
+    >
       {/* Decorative background */}
       <div className="absolute inset-0 -z-10 bg-grid-white/5" />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-muted/50 to-background" />
@@ -50,6 +57,10 @@ export default function Team() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setLocation("/team");
+              }}
             >
               <Card className="text-center card-hover bg-gradient-to-br from-card to-card/50 border-primary/10">
                 <CardContent className="pt-8 pb-6">

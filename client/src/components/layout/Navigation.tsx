@@ -2,30 +2,35 @@ import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 
 const Navigation = () => {
   const [open, setOpen] = useState(false);
+  const [location] = useLocation();
 
   const navItems = [
-    { href: "#services", label: "Services" },
-    { href: "#portfolio", label: "Portfolio" },
-    { href: "#team", label: "Team" },
-    { href: "#testimonials", label: "Testimonials" },
-    { href: "#contact", label: "Contact" },
+    { href: "/services", label: "Services" },
+    { href: "/portfolio", label: "Portfolio" },
+    { href: "/team", label: "Team" },
+    { href: "/testimonials", label: "Testimonials" },
+    { href: "/contact", label: "Contact" },
   ];
 
   const NavLinks = () => (
     <>
       {navItems.map((item) => (
-        <a
+        <Link
           key={item.href}
           href={item.href}
-          className="text-foreground/80 hover:text-foreground transition-colors"
+          className={`transition-colors ${
+            location === item.href
+              ? "text-primary font-medium"
+              : "text-foreground/80 hover:text-foreground"
+          }`}
           onClick={() => setOpen(false)}
         >
           {item.label}
-        </a>
+        </Link>
       ))}
     </>
   );

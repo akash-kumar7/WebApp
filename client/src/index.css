@@ -18,7 +18,7 @@
 
 @layer components {
   .gradient-heading {
-    @apply bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent animate-gradient;
+    @apply bg-gradient-to-r from-primary via-blue-600 to-primary bg-clip-text text-transparent animate-gradient;
   }
 
   .section-padding {
@@ -26,7 +26,19 @@
   }
 
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply transition-all duration-500 hover:shadow-2xl hover:-translate-y-2;
+  }
+
+  .floating {
+    animation: floating 3s ease-in-out infinite;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/10 border border-white/20;
+  }
+
+  .gradient-border {
+    @apply relative before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r before:from-primary/50 before:to-blue-600/50 before:rounded-lg before:-z-10;
   }
 }
 
@@ -36,9 +48,54 @@
     animation: gradient 8s ease infinite;
   }
 
+  .bg-grid-white\/10 {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .bg-radial-gradient {
+    background: radial-gradient(circle at center, var(--primary-color) 0%, transparent 70%);
+  }
+
   @keyframes gradient {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
+  }
+
+  @keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+  }
+
+  .animate-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: reveal 0.6s ease forwards;
+  }
+
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  .card-shadow {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgba(var(--primary-color), 0.5);
   }
 }

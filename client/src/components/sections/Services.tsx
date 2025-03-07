@@ -27,7 +27,10 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 bg-muted/30">
+    <section id="services" className="section-padding relative bg-muted/30">
+      {/* Decorative Elements */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent to-background/5" />
+
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -36,8 +39,8 @@ export default function Services() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold mb-4">Our Services</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             We offer comprehensive digital solutions to help your business thrive in the modern world.
           </p>
         </motion.div>
@@ -51,11 +54,13 @@ export default function Services() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <Card className="h-full hover:shadow-lg transition-shadow">
+              <Card className="card-hover border-primary/10 bg-gradient-to-br from-card to-card/50">
                 <CardHeader>
-                  {service.icon}
-                  <CardTitle className="mt-4">{service.title}</CardTitle>
-                  <CardDescription>{service.description}</CardDescription>
+                  <div className="mb-4 p-3 rounded-lg bg-primary/10 w-fit">
+                    {service.icon}
+                  </div>
+                  <CardTitle className="text-xl mb-2">{service.title}</CardTitle>
+                  <CardDescription className="text-muted-foreground/90">{service.description}</CardDescription>
                 </CardHeader>
               </Card>
             </motion.div>

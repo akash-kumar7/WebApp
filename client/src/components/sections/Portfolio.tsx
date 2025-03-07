@@ -22,7 +22,11 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-20">
+    <section id="portfolio" className="py-20 relative overflow-hidden">
+      {/* Decorative background */}
+      <div className="absolute inset-0 -z-10 bg-grid-white/5" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background via-background to-background/80" />
+
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -31,13 +35,13 @@ export default function Portfolio() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl font-bold mb-4">Our Portfolio</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Portfolio</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             Explore our recent projects and see how we've helped businesses achieve their digital goals.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -45,17 +49,18 @@ export default function Portfolio() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
             >
-              <Card className="overflow-hidden hover:shadow-lg transition-shadow">
+              <Card className="overflow-hidden bg-gradient-to-br from-card to-card/50 border-primary/10">
                 <AspectRatio ratio={16/9}>
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
                   />
                 </AspectRatio>
-                <CardContent className="p-4">
-                  <h3 className="font-semibold mb-2">{project.title}</h3>
+                <CardContent className="p-6">
+                  <h3 className="font-semibold text-xl mb-2">{project.title}</h3>
                   <p className="text-muted-foreground">{project.description}</p>
                 </CardContent>
               </Card>
